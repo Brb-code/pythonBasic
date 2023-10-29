@@ -233,3 +233,212 @@ El promedio de las notas de aprobación es: 79.6
 El promedio de las notas de reprobación es: 32.666666666666664
 ```
 
+6. Crea un diccionario cuya clave sea un número de carnet de identidad y cuyo valor sea
+una lista que almacene: nombre, salario y departamento en que trabaja. Llena el
+diccionario con 15 registros. Imprime el empleado de salario más alto, el empleado de
+salario más bajo, imprime el promedio de salarios, pide al usuario un número de carnet
+y revisa si existe en el diccionario, si existe muestra los datos de ese empleado.
+
+```python
+# Diccionario de  empleados
+empleados = {
+    12345: ['Juan Perez', 5000, 'Ventas'],
+    23456: ['María Rodriguez', 3000, 'Finanzas'],
+    34567: ['Carlos Gomez', 2500, 'RRHH'],
+    45678: ['Mario Ortiz', 2500, 'RRHH'],
+    56789: ['Laura Saenz', 4000, 'Sistemas'],
+    67890: ['Mike Solivan', 2000, 'Seguridad'],
+    78901: ['Lupe Carrasco', 3500, 'Legal'],
+    89012: ['Susana Quinteros', 5000, 'Ventas'],
+    90123: ['Patricio Estrella', 5500, 'Gerencia'],
+    11234: ['Lina Torres', 4000, 'Ventas'],
+    12234: ['Luis Sanchez', 2000, 'Seguridad'],
+    12223: ['Luordes Carrillo', 4000, 'Atención al cliente'],
+    12222: ['Liz Lopez', 5000, 'Ventas'],
+    13123: ['Lu Ortiz', 4000, 'RRHH'],
+    13312: ['Mauricio Mendez', 3000, 'Legal'],    
+}
+
+salario_alto = max(empleados.items(), key=lambda x: x[1][1])
+print(f'El empleado con salario más alto es: {salario_alto[1][0]}')
+
+salario_bajo = min(empleados.items(), key=lambda x: x[1][1])
+print(f'El empleado con salario más bajo es: {salario_bajo[1][0]}')
+
+salarios = [empleado[1] for empleado in empleados.values()]
+print(f"El promedio de salarios es: {sum(salarios)/len(salarios)}")
+
+nro_ci = int(input("Ingrese el número de carnet a buscar: "))
+
+if nro_ci in empleados:
+    datos_empleado = empleados[nro_ci]
+    print(f"Los datos del empleado buscado son: número de carnet {nro_ci}: Nombre: {datos_empleado[0]}, Salario: {datos_empleado[1]}, Departamento: {datos_empleado[2]}")
+else:
+    print(f"No se encontró información para el número de carnet {nro_ci}")
+```
+
+[Código fuente](practica06.py)
+
+```bash
+# DEMO
+El empleado con salario más alto es: Patricio Estrella
+El empleado con salario más bajo es: Mike Solivan
+El promedio de salarios es: 3666.6666666666665
+Ingrese el número de carnet a buscar: 122222
+No se encontró información para el número de carnet 122222
+
+#DEMO
+El empleado con salario más alto es: Patricio Estrella
+El empleado con salario más bajo es: Mike Solivan
+El promedio de salarios es: 3666.6666666666665
+Ingrese el número de carnet a buscar: 12222
+Los datos del empleado buscado son: número de carnet 12222: Nombre: Liz Lopez, Salario: 5000, Departamento: Ventas
+```
+
+7. Mediante el uso de un diccionario, escribe el código de un programa que implemente
+una agenda. En la agenda se podrán guardar nombres y números de teléfono. El
+programa nos dará el siguiente menú:
+- Añadir/modificar: Se debe introducir el nombre y el teléfono que será añadido al
+diccionario si no existe, y si existe deberá actualizar el teléfono al nuevo valor.
+- Buscar: Nos pide el nombre, y muestra el número de teléfono de esa persona si es
+que lo encuentra, sino lo encuentra muestra el mensaje adcuado.
+- Borrar: Nos pide un nombre y si existe nos preguntará si queremos borrarlo de la
+agenda.
+- Listar: Nos muestra todos los contactos de la agenda
+
+```python
+agenda = {}
+
+def agregar_modificar():
+    nombre = input("Ingrese el nombre de su contacto: ")
+    telefono = input("Ingrese el número de teléfono de su contacto: ")
+    agenda[nombre] = telefono
+    print(f"El contacto {nombre} fue agregado/modificado con éxito.")
+
+def buscar():
+    nombre = input("Ingrese el nombre a buscar: ")
+    if nombre in agenda:
+        print(f"El número de teléfono de {nombre} es: {agenda[nombre]}")
+    else:
+        print(f"{nombre} no se encuentra en la agenda.")
+
+def borrar():
+    nombre = input("Ingrese el nombre del contacto a borrar: ")
+    if nombre in agenda:
+        confirmacion = input(f"¿Está seguro de que desea borrar a {nombre} de la agenda? (s/n): ")
+        if confirmacion.lower() == 's':
+            del agenda[nombre]
+            print(f"{nombre} fue eliminado con éxito.")
+    else:
+        print(f"{nombre} no se encuentra en la agenda.")
+
+def listar():
+    print("Contactos en la agenda:")
+    for nombre, telefono in agenda.items():
+        print(f"{nombre}: {telefono}")
+
+while True:
+    print("\nMi agenda:\nMenú")
+    print("1. Añadir/Modificar")
+    print("2. Buscar")
+    print("3. Borrar")
+    print("4. Listar")
+    print("5. Salir")
+
+    opcion = input("Seleccione una opción (1-5): ")
+
+    if opcion == '1':
+        agregar_modificar()
+    elif opcion == '2':
+        buscar()
+    elif opcion == '3':
+        borrar()
+    elif opcion == '4':
+        listar()
+    elif opcion == '5':
+        print("Gracias, vuelvo pronto....")
+        break
+    else:
+        print("Opción no válida. Intente nuevamente.")
+```
+
+[Código fuente](practica07.py)
+
+```bash
+# DEMO
+Mi agenda:
+Menú
+1. Añadir/Modificar
+2. Buscar
+3. Borrar
+4. Listar
+5. Salir
+Seleccione una opción (1-5): 2
+Ingrese el nombre a buscar: pepe
+pepe no se encuentra en la agenda.
+
+Mi agenda:
+Menú
+1. Añadir/Modificar
+2. Buscar
+3. Borrar
+4. Listar
+5. Salir
+Seleccione una opción (1-5): 1
+Ingrese el nombre de su contacto: pepe
+Ingrese el número de teléfono de su contacto: 123123
+El contacto pepe fue agregado/modificado con éxito.
+
+Mi agenda:
+Menú
+1. Añadir/Modificar
+2. Buscar
+3. Borrar
+4. Listar
+5. Salir
+Seleccione una opción (1-5): 4
+Contactos en la agenda:
+pepe: 123123
+
+Mi agenda:
+Menú
+1. Añadir/Modificar
+2. Buscar
+3. Borrar
+4. Listar
+5. Salir
+Seleccione una opción (1-5): 3
+Ingrese el nombre del contacto a borrar: pepe
+¿Está seguro de que desea borrar a pepe de la agenda? (s/n): s
+pepe fue eliminado con éxito.
+
+Mi agenda:
+Menú
+1. Añadir/Modificar
+2. Buscar
+3. Borrar
+4. Listar
+5. Salir
+Seleccione una opción (1-5): 4
+Contactos en la agenda:
+
+Mi agenda:
+Menú
+1. Añadir/Modificar
+2. Buscar
+3. Borrar
+4. Listar
+5. Salir
+Seleccione una opción (1-5): 6
+Opción no válida. Intente nuevamente.
+
+Mi agenda:
+Menú
+1. Añadir/Modificar
+2. Buscar
+3. Borrar
+4. Listar
+5. Salir
+Seleccione una opción (1-5): 5
+Gracias, vuelvo pronto....
+```
