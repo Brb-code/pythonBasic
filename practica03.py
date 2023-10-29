@@ -6,7 +6,8 @@ Imprime la lista original y la lista de números primos.
 # Función para identificar si un numero es primo o no
 def primo(n):
     for i in range(2, n-1):
-        return False
+        if n % i == 0:
+            return False
     return True
 
 nro = -1
