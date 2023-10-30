@@ -1,7 +1,7 @@
 # Ejercicios en Python
 
 **_Elaborado por:_** Israel Jose Huallpara Mencias
-**_Código fuente en:_** ()[]
+**_Código fuente en:_** [https://github.com/Brb-code/pythonBasic/tree/pandas](https://github.com/Brb-code/pythonBasic/tree/pandas)
 
 ## Práctica Pandas
 
